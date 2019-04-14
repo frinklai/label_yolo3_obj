@@ -188,10 +188,18 @@ class LabelTool():
                 for (i, line) in enumerate(f):
                     bbox_cnt = str(line.strip())
                     info = bbox_cnt
-                    tmp1 = os.path.split(info)[-1].split(' ')[1]
-                    tmp2 = os.path.split(info)[-1].split(' ')[2]
-                    tmp3 = os.path.split(info)[-1].split(' ')[3]
-                    tmp4 = os.path.split(info)[-1].split(' ')[4]
+
+                    tmp0 = os.path.split(info)[-1].split(' ')[1]
+                    # tmp1 = os.path.split(info)[-1].split(' ')[1]
+                    # tmp2 = os.path.split(info)[-1].split(' ')[2]
+                    # tmp3 = os.path.split(info)[-1].split(' ')[3]
+                    # tmp4 = os.path.split(info)[-1].split(' ')[4]
+                    #---
+                    tmp1 = os.path.split(tmp0)[-1].split(',')[0]
+                    tmp2 = os.path.split(tmp0)[-1].split(',')[1]
+                    tmp3 = os.path.split(tmp0)[-1].split(',')[2]
+                    tmp4 = os.path.split(tmp0)[-1].split(',')[3]
+                    #---
 
                     tmp5 = self.category
                     tmp = [tmp1, tmp2, tmp3, tmp4, tmp5]
@@ -215,7 +223,7 @@ class LabelTool():
         with open(self.labelfilename, 'w') as f:
             f.write( (self.imageDir+'/'+self.imagename) +'.jpg ' )
             for bbox in self.bboxList:
-                f.write(' '.join(map(str, bbox)) + '\n')
+                f.write(','.join(map(str, bbox)) + '\n')
         print('[%s] Save image: %s.jpg complete!'  %(self.cur, self.imagename))
 
 
