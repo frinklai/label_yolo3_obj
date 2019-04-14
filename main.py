@@ -227,20 +227,14 @@ class LabelTool():
                     # except expression as identifier:
                     #     tmp5 = os.path.split(info)[-1].split(' ')[5]
 
-                    if(self.entry2.get()==''):
-                        tmp5 = os.path.split(info)[-1].split(' ')[5]
-                    else:
-                        tmp5 = self.entry2.get()
+                    # if(self.entry2.get()==''):
+                    #     tmp5 = os.path.split(info)[-1].split(' ')[5]
+                    # else:
+                    #     tmp5 = self.entry2.get()
+                    tmp5 = self.category
                     tmp = [tmp1, tmp2, tmp3, tmp4, tmp5]
                     print('info = ', tmp)
-                    
                     self.bboxList.append(tuple(tmp))
-                    # print("(self.bboxList[0]) = ", (self.bboxList[0]))
-                    # print("len(self.bboxList[0]) = ", len(self.bboxList[0]))
-                    # if(len(self.bboxList[0]) == 4):
-                    #     self.bboxList[0] = [self.bboxList[0], self.label_id]
-                    #     print("(self.bboxList[0]) = ", (self.bboxList[0]))
-                    #     print("len(self.bboxList[0]) = ", len(self.bboxList[0]))
                     tmpId = self.mainPanel.create_rectangle(tmp[0], tmp[1], \
                                                             tmp[2], tmp[3], \
                                                             width = 2, \
@@ -248,44 +242,7 @@ class LabelTool():
                     self.bboxIdList.append(tmpId)
                     self.listbox.insert(END, '[%s]. (%s, %s) -> (%s, %s)' %(tmp5, tmp[0], tmp[1], tmp[2], tmp[3]) )
                     self.listbox.itemconfig(len(self.bboxIdList) - 1, fg = COLORS[(len(self.bboxIdList) - 1) % len(COLORS)])
-                        
-    # def loadImage_orig(self):
-    #     # load image
-    #     imagepath = self.imageList[self.cur - 1]
-    #     self.img = Image.open(imagepath)
-    #     self.tkimg = ImageTk.PhotoImage(self.img)
-    #     self.mainPanel.config(width = max(self.tkimg.width(), 640), height = max(self.tkimg.height(), 530))
-    #     self.mainPanel.create_image(0, 0, image = self.tkimg, anchor=NW)
-    #     self.progLabel.config(text = "%04d/%04d" %(self.cur, self.total))
-
-    #     # load labels
-    #     self.clearBBox()
-
-    #     self.imagename = os.path.split(imagepath)[-1].split('.')[0]
-    #     labelname = self.imagename + '.txt'
-
-    #     self.labelfilename = os.path.join(self.outDir, labelname)
-
-    #     bbox_cnt = 0
-    #     if os.path.exists(self.labelfilename):
-    #         with open(self.labelfilename) as f:
-    #             for (i, line) in enumerate(f):
-    #                 try:
-    #                     if i == 0:
-    #                         bbox_cnt = int(line.strip())
-    #                         continue
-    #                     tmp = [int(t.strip()) for t in line.split()]
-    # ##                    print(tmp)
-    #                     self.bboxList.append(tuple(tmp))
-    #                     tmpId = self.mainPanel.create_rectangle(tmp[0], tmp[1], \
-    #                                                             tmp[2], tmp[3], \
-    #                                                             width = 2, \
-    #                                                             outline = COLORS[(len(self.bboxList)-1) % len(COLORS)])
-    #                     self.bboxIdList.append(tmpId)
-    #                     self.listbox.insert(END, '(%d, %d) -> (%d, %d)' %(tmp[0], tmp[1], tmp[2], tmp[3]))
-    #                     self.listbox.itemconfig(len(self.bboxIdList) - 1, fg = COLORS[(len(self.bboxIdList) - 1) % len(COLORS)])
-    #                 except :
-    #                     print('The label already replace complete.')
+                    
 
     def save_img_info(self):
         self.loadImage()
@@ -302,17 +259,17 @@ class LabelTool():
 
 
     def mouseClick(self, event):
-        self.label_id = self.entry2.get()
+        # self.label_id = self.entry2.get()
         if self.STATE['click'] == 0:
             self.STATE['x'], self.STATE['y'] = event.x, event.y
         else:
             x1, x2 = min(self.STATE['x'], event.x), max(self.STATE['x'], event.x)
             y1, y2 = min(self.STATE['y'], event.y), max(self.STATE['y'], event.y)
-            self.bboxList.append((x1, y1, x2, y2, self.label_id))
+            self.bboxList.append((x1, y1, x2, y2, self.category))
             # self.bboxList.append((x1, y1, x2, y2))
             self.bboxIdList.append(self.bboxId)
             self.bboxId = None
-            self.listbox.insert(END, '(%d, %d) -> (%d, %d)' %(x1, y1, x2, y2))
+            self.listbox.insert(END, '[%d] (%d, %d) -> (%d, %d)' %(self.category, x1, y1, x2, y2))
             self.listbox.itemconfig(len(self.bboxIdList) - 1, fg = COLORS[(len(self.bboxIdList) - 1) % len(COLORS)])
         self.STATE['click'] = 1 - self.STATE['click']
 
