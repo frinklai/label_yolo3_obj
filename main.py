@@ -97,13 +97,11 @@ class LabelTool():
         self.listbox = Listbox(self.frame, width = 22, height = 12)
         self.listbox.grid(row = 2, column = 2, sticky = N)
 
-        self.btnDel = Button(self.frame, text = 'Save', command = self.saveImage)
+        self.btnDel = Button(self.frame, text = 'Delete', command = self.delBBox)
         self.btnDel.grid(row = 3, column = 2, sticky = W+E+N)
         
         self.btnClear = Button(self.frame, text = 'ClearAll', command = self.clearBBox)
         self.btnClear.grid(row = 4, column = 2, sticky = W+E+N)
-
-        
 
         # control panel for image navigation
         self.ctrPanel = Frame(self.frame)
@@ -123,19 +121,12 @@ class LabelTool():
         self.goBtn = Button(self.ctrPanel, text = 'Go', command = self.gotoImage)
         self.goBtn.pack(side = LEFT)
 
-        
-
-        # self.label3 = Label(self.frame, text = "Data")
-        # self.label3.grid(row = 2, column = 0,sticky = E)
         # example pannel for illustration
         self.egPanel = Frame(self.frame, border = 10)
         self.egPanel.grid(row = 2, column = 0, rowspan = 5, sticky = N)
         self.tmpLabel2 = Label(self.egPanel, text = "Image:")
         self.tmpLabel2.pack(side = TOP, pady = 5)
-        # self.egLabels = []
-        # for i in range(3):
-        #     self.egLabels.append(Label(self.egPanel))
-        #     self.egLabels[-1].pack(side = TOP)
+
 
         # display mouse position
         self.disp = Label(self.ctrPanel, text='')
@@ -170,28 +161,7 @@ class LabelTool():
         
         if not os.path.exists(self.outDir):
             os.mkdir(self.outDir)
-        # load example bboxes
-        # self.egDir = os.path.join(r'./Examples', '%03d' %(self.category))
-        # if not os.path.exists(self.egDir):
-        #     return
-        # print("tag1")
-        # filelist = glob.glob(os.path.join(self.egDir, '*.jpg'))
 
-        # print("tag2")
-        # self.tmp = []
-        # self.egList = []
-        # random.shuffle(filelist)
-        # print("tag3")
-        # for (i, f) in enumerate(filelist):
-        #     if i == 3:
-        #         break
-        #     im = Image.open(f)
-        #     r = min(SIZE[0] / im.size[0], SIZE[1] / im.size[1])
-        #     new_size = int(r * im.size[0]), int(r * im.size[1])
-        #     self.tmp.append(im.resize(new_size, Image.ANTIALIAS))
-        #     self.egList.append(ImageTk.PhotoImage(self.tmp[-1]))
-        #     self.egLabels[i].config(image = self.egList[-1], width = SIZE[0], height = SIZE[1])
-        # print("tag4")
         self.loadImage()
         print('%d images loaded from %s' %(self.total, s))
 
@@ -222,15 +192,7 @@ class LabelTool():
                     tmp2 = os.path.split(info)[-1].split(' ')[2]
                     tmp3 = os.path.split(info)[-1].split(' ')[3]
                     tmp4 = os.path.split(info)[-1].split(' ')[4]
-                    # try:
-                    #     tmp5 = self.entry2.get()
-                    # except expression as identifier:
-                    #     tmp5 = os.path.split(info)[-1].split(' ')[5]
 
-                    # if(self.entry2.get()==''):
-                    #     tmp5 = os.path.split(info)[-1].split(' ')[5]
-                    # else:
-                    #     tmp5 = self.entry2.get()
                     tmp5 = self.category
                     tmp = [tmp1, tmp2, tmp3, tmp4, tmp5]
                     print('info = ', tmp)
@@ -247,12 +209,11 @@ class LabelTool():
     def save_img_info(self):
         self.loadImage()
         self.saveImage()
-        self.loadImage()
-        elf.saveImage()
+
 
     def saveImage(self):
         with open(self.labelfilename, 'w') as f:
-            f.write( (self.imageDir) +'.jpg ' )
+            f.write( (self.imageDir+'/'+self.imagename) +'.jpg ' )
             for bbox in self.bboxList:
                 f.write(' '.join(map(str, bbox)) + '\n')
         print('[%s] Save image: %s.jpg complete!'  %(self.cur, self.imagename))
