@@ -49,7 +49,10 @@ Usage:
   - Step 3. Start to label your img.
   - Step 4. Click "Next>>" button or key in "d" on keyboard to save info and load next img, until over.
 
-**Step 5: Other info:**
+**Step 5: python3 merge_label.py**
+  - This will merge all of the label files that belong to same class to one file
+
+**Step 6: Other info:**
   - Click "Previous>>" button or key in "a" on keyboard  to save info and load previous img, until over.
   - Key in "esc" or "s" on keyboard  to cancel label.
   - Select the info you want to delete and click "Delete" button to delete bounding box info in list_box.
