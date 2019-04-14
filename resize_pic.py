@@ -9,6 +9,8 @@ for (i, path) in enumerate(dir_path_list):
         orig_img = Image.open(name)
         img_name = os.path.split(name)[-1].split('.')[0]
         out = orig_img.resize((640, 480))
+        if (os.path.exists("./Train/" + dir_path_list[i])==False) :
+            os.makedirs("./Train/" + dir_path_list[i])
         out.save("./Train/" + dir_path_list[i] + '/' + img_name + file_type)
     print('['+str(i)+'] ' + "Save path : " +"./Train/" + dir_path_list[i] )
 
