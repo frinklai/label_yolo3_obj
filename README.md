@@ -2,12 +2,17 @@ BBox-Label-Tool
 ===============
 
 A simple tool for labeling object bounding boxes in images, implemented with Python Tkinter.
+ref: https://github.com/puzzledqs/BBox-Label-Tool
 
-**Updates:**
-- 2017.5.21 Check out the ```multi-class``` branch for a multi-class version implemented by @jxgu1016
+Environment
+----------
+- python 3.5
+- python PIL (Pillow)
 
-**Screenshot:**
-![Label Tool](./screenshot.png)
+Run
+-------
+$ python3 main.py
+
 
 Data Organization
 -----------------
@@ -15,28 +20,42 @@ LabelTool
 |  
 |--main.py   *# source code for the tool*  
 |  
-|--Images/   *# direcotry containing the images to be labeled*  
+|--Train/   *# Training data*  
 |  
-|--Labels/   *# direcotry for the labeling results*  
+|--Labels/   *# Training data's label*  
 |  
-|--Examples/  *# direcotry for the example bboxes*  
+|--Orig/    *# The original img from maybe google, your camera and son on*  
 
-Environment
-----------
-- python 2.7
-- python PIL (Pillow)
 
-Run
--------
-$ python main.py
 
-Usage
+Usage:
 -----
-0. The current tool requires that **the images to be labeled reside in /Images/001, /Images/002, etc. You will need to modify the code if you want to label images elsewhere**.
-1. Input a folder number (e.g, 1, 2, 5...), and click `Load`. The images in the folder, along with a few example results will be loaded.
-2. To create a new bounding box, left-click to select the first vertex. Moving the mouse to draw a rectangle, and left-click again to select the second vertex.
-  - To cancel the bounding box while drawing, just press `<Esc>`.
-  - To delete a existing bounding box, select it from the listbox, and click `Delete`.
-  - To delete all existing bounding boxes in the image, simply click `ClearAll`.
-3. After finishing one image, click `Next` to advance. Likewise, click `Prev` to reverse. Or, input an image id and click `Go` to navigate to the speficied image.
-  - Be sure to click `Next` after finishing a image, or the result won't be saved. 
+**Step 0: cd /label_yolo3_obj**
+
+**Step 1: Create needed folders (Orig, Train, Labels)**
+
+**Step 2: Paste your original img data to "Orig" folder and classify them by folders**
+  - About the rule of folder's name: 00id
+  - eg. "001", "002", ..., "012" ... 
+  - so the path will like: label_yolo3_obj/Orig/001 or label_yolo3_obj/Orig/012
+
+**Step 3: python3 main.py**
+  - This program will generate training data with the size you set in resize_pic.py
+  - Start to label your img and make labels
+
+**Step 4: About the illustration of label tool UI**
+  - Step 1. Type your folder id (1 for folder "001", 12 for folder "012") in "Image Dir"
+  - Step 2. Click "Load" button to load one image.
+  - Step 3. Start to label your img.
+  - Step 4. Click "Next>>" button or key in "d" on keyboard to save info and load next img, until over.
+
+**Step 5: Other info:**
+  - Click "Previous>>" button or key in "a" on keyboard  to save info and load previous img, until over.
+  - Key in "esc" or "s" on keyboard  to cancel label.
+  - Select the info you want to delete and click "Delete" button to delete bounding box info in list_box.
+  - Click "ClearAll" button to clear all info in list_box.
+  - Type desire photo number in "Go to Image No." and load it by click "Go" button
+
+Illustration of label:
+-----
+Illustration of 00X.txt in "Labels" folder: path, x1, y1, x2, y2, label_id
