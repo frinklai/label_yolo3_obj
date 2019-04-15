@@ -304,16 +304,16 @@ class LabelTool():
 
 if __name__ == '__main__':
     resize_pic
-    parser.add_argument("-l",   dest='label_id', default=-1, type=int)
-    label = parser.parse_args()
+    # parser.add_argument("-l",   dest='label_id', default=-1, type=int)
+    # label = parser.parse_args()
 
-    if(label.label_id == -1):
-        print("please enter label id\n")
+    # if(label.label_id == -1):
+    #     print("please enter label id\n")
 
     root = Tk()
     tool = LabelTool(root)
-    tool.label_id = label.label_id
-    print("Label_id is ", tool.label_id)
+    # tool.label_id = label.label_id
+    # print("Label_id is ", tool.label_id)
     
     root.resizable(width =  True, height = True)
     root.mainloop()
