@@ -25,8 +25,12 @@ if __name__ == '__main__':
     child_path = util.label_path
     outfile  = "result.txt"
 
-    for (i, filepath) in enumerate(child_path):
-        filepath = os.path.join(parent_path, child_path[i]) 
-        MergeTxt(filepath, outfile)
+    try:
+        for (i, filepath) in enumerate(child_path):
+            filepath = os.path.join(parent_path, child_path[i]) 
+            MergeTxt(filepath, outfile)
+    except :
+        print('There is an unexist folder!')
+
     # time2 = time.time()
 
