@@ -39,23 +39,31 @@ Usage:
   - eg. "001", "002", ..., "012" ... 
   - so the path will like: label_yolo3_obj/Orig/001 or label_yolo3_obj/Orig/012
 
-**Step 3: "edit label_path" in utils.py**
+**Step 3: edit "label_path" in utils.py**
   - eg. label_path = ['001/', '002/', ...]
 
-**Step 4: python3 main.py**
+**Step4: rename all datas in Orig folder**
+  - Run python3 rename_file.py
+  - You can still add new data and rename them, even you already train another original data. 
+  - It is not needed to delete original data or do other operation.
+  - Just paste new data and run rename_file.py
+
+**Step 5: python3 main.py**
   - This program will generate training data with the size you set in resize_pic.py
   - Start to label your img and make labels
+  - Run python3 main.py -r 0 
+  - The arg -r 0 means program will ignore resize function
 
-**Step 5: About the illustration of label tool UI**
+**Step 6: About the illustration of label tool UI**
   - Step 1. Type your folder id (1 for folder "001", 12 for folder "012") in "Image Dir"
   - Step 2. Click "Load" button to load one image.
   - Step 3. Start to label your img.
   - Step 4. Click "Next>>" button or key in "d" on keyboard to save info and load next img, until over.
 
-**Step 6: python3 merge_label.py**
+**Step 7: python3 merge_label.py**
   - This will merge all of the label files that belong to same class to one file
 
-**Step 7: Other info:**
+**Other info:**
   - Click "Previous>>" button or key in "a" on keyboard  to save info and load previous img, until over.
   - Key in "esc" or "s" on keyboard  to cancel label.
   - Select the info you want to delete and click "Delete" button to delete bounding box info in list_box.
