@@ -1,6 +1,7 @@
 import sys
 import os
 import os.path
+import utils as util
 # import time
 # time1=time.time()
 
@@ -21,7 +22,7 @@ def MergeTxt(filepath, outfile):
 
 if __name__ == '__main__':
     parent_path = "Labels/"
-    child_path = ['001/', '002/']
+    child_path = util.label_path
     outfile  = "result.txt"
 
     for (i, filepath) in enumerate(child_path):

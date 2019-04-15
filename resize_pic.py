@@ -1,7 +1,8 @@
 from PIL import Image
 import glob, os
+import utils as util
 
-dir_path_list  = ['001', '002']
+dir_path_list  = util.label_path
 file_type = '.jpg'
 
 for (i, path) in enumerate(dir_path_list):
@@ -11,7 +12,7 @@ for (i, path) in enumerate(dir_path_list):
         out = orig_img.resize((640, 480))
         if (os.path.exists("./Train/" + dir_path_list[i])==False) :
             os.makedirs("./Train/" + dir_path_list[i])
-        out.save("./Train/" + dir_path_list[i] + '/' + img_name + file_type)
+        out.save("./Train/" + dir_path_list[i] + img_name + file_type)
     print('['+str(i)+'] ' + "Save path : " +"./Train/" + dir_path_list[i] )
 
 
