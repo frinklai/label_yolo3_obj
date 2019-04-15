@@ -163,7 +163,7 @@ class LabelTool():
             os.mkdir(self.outDir)
 
         self.loadImage()
-        print('%d images loaded from %s' %(self.total, s))
+        print('%d images loaded from %s' %(self.total, self.imageDir))
 
     def loadImage(self):
         # load image
@@ -203,7 +203,7 @@ class LabelTool():
 
                     tmp5 = self.category
                     tmp = [tmp1, tmp2, tmp3, tmp4, tmp5]
-                    print('info = ', tmp)
+                    print("load " + (self.imagename) + "'s bbox info:", tmp)
                     self.bboxList.append(tuple(tmp))
                     tmpId = self.mainPanel.create_rectangle(tmp[0], tmp[1], \
                                                             tmp[2], tmp[3], \
