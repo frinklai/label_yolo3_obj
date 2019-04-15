@@ -17,7 +17,6 @@ import os
 import glob
 import random
 import argparse
-import resize_pic
 
 
 parser = argparse.ArgumentParser()
@@ -167,6 +166,7 @@ class LabelTool():
 
     def loadImage(self):
         # load image
+        self.imageList.sort()
         imagepath = self.imageList[self.cur - 1]
         self.img = Image.open(imagepath)
         self.tkimg = ImageTk.PhotoImage(self.img)
@@ -303,12 +303,17 @@ class LabelTool():
             self.loadImage()
 
 if __name__ == '__main__':
-    resize_pic
-    # parser.add_argument("-l",   dest='label_id', default=-1, type=int)
-    # label = parser.parse_args()
+    parser.add_argument("-r",   dest='resize', default = 1, type=int)
+    do_resize = parser.parse_args()
+    print('r = ', do_resize.resize)
 
-    # if(label.label_id == -1):
-    #     print("please enter label id\n")
+    if(do_resize.resize == 1):
+        print('start to resize')
+        import resize_pic
+        resize_pic
+    else:
+        print('skip to resize img')
+        pass
 
     root = Tk()
     tool = LabelTool(root)
