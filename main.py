@@ -201,7 +201,7 @@ class LabelTool():
                     tmp4 = os.path.split(tmp0)[-1].split(',')[3]
                     #---
 
-                    tmp5 = self.category
+                    tmp5 = self.category-1
                     tmp = [tmp1, tmp2, tmp3, tmp4, tmp5]
                     print("load " + (self.imagename) + "'s bbox info:", tmp)
                     self.bboxList.append(tuple(tmp))
@@ -234,7 +234,7 @@ class LabelTool():
         else:
             x1, x2 = min(self.STATE['x'], event.x), max(self.STATE['x'], event.x)
             y1, y2 = min(self.STATE['y'], event.y), max(self.STATE['y'], event.y)
-            self.bboxList.append((x1, y1, x2, y2, self.category))
+            self.bboxList.append((x1, y1, x2, y2, self.category-1))
             # self.bboxList.append((x1, y1, x2, y2))
             self.bboxIdList.append(self.bboxId)
             self.bboxId = None
