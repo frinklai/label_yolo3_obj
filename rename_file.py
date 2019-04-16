@@ -35,7 +35,7 @@ if __name__ == '__main__':
                     old_data_num+=1
                 else:
                     new_data_num+=1
-                    rand_name = 'zzz_'+str(new_data_num)
+                    rand_name = 'zzz_'+str(new_data_num)    # Do not change 'zzz' this is set for sort (z is the final ranking. sort rank: 0 -> A-Z -> a-z)
                     os.rename(file_path+file_name, file_path+rand_name)
 
             print('new_data_num = ', new_data_num)
