@@ -38,7 +38,7 @@ if __name__ == '__main__':
                     rand_name = 'zzz_'+str(new_data_num)
                     os.rename(file_path+file_name, file_path+rand_name)
 
-            print('old_data_num = ', old_data_num)
+            print('new_data_num = ', new_data_num)
             file_name_list = os.listdir(file_path)
             file_name_list.sort()
             # 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
             for (j, file_name) in enumerate(file_name_list):
                 if(j < old_data_num):
                     continue
-                print([j, old_data_num])
+                # print([j, old_data_num])
                 redun_0 = '0' * sort_list(j)
                 new_name = (new_name_list[i] + redun_0 + str(j) + file_type)
 
