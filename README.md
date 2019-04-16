@@ -70,6 +70,11 @@ Usage:
   - Click "ClearAll" button to clear all info in list_box.
   - Type desire photo number in "Go to Image No." and load it by click "Go" button
 
+**Catch photo from your camera**
+  - Run python3 catch_photo.py to get frame from camera
+  - press 's' on keyboard to save frame as a .jpg file
+  - You can set the save path in catch_photo.py by change the var 'photo_path'
+
 Illustration of label:
 -----
 Illustration of 00X.txt in "Labels" folder: path, x1, y1, x2, y2, label_id
