@@ -221,7 +221,7 @@ class LabelTool():
 
     def saveImage(self):
         with open(self.labelfilename, 'w') as f:
-            f.write( (self.imageDir+'/'+self.imagename) +'.jpg ' )
+            f.write( '.'+(self.imageDir+'/'+self.imagename) +'.jpg ' )
             for bbox in self.bboxList:
                 f.write(','.join(map(str, bbox)) + '\n')
         print('[%s] Save image: %s.jpg complete!'  %(self.cur, self.imagename))
